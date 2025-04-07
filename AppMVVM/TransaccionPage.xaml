@@ -1,0 +1,31 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppMVVM.TransaccionPage"
+             BindingContext="{Binding TransaccionViewModel}">
+
+    <VerticalStackLayout>
+        <Picker ItemsSource="{Binding Categorias}" ItemDisplayBinding="{Binding Nombre}" SelectedItem="{Binding CategoriaSeleccionada}" />
+        <Entry Placeholder="Monto" x:Name="Monto" />
+        <Entry Placeholder="Tipo" x:Name="Tipo" />
+        <Entry Placeholder="Fecha" x:Name="Fecha" />
+        <Entry Placeholder="Es Recurrente" x:Name="EsRecurrente" />
+        <Entry Placeholder="Frecuencia" x:Name="Frecuencia" />
+
+        <Button Text="Agregar Transacción" Clicked="AgregarTransaccion_Clicked" HorizontalOptions="Center" />
+
+        <ListView ItemsSource="{Binding Transacciones}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Monto}" />
+                            <Label Text="{Binding Tipo}" />
+                            <Label Text="{Binding Fecha}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+
+</ContentPage>

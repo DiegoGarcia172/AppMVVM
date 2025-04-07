@@ -1,0 +1,10 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppMVVM.CategoriaPage">
+
+    <VerticalStackLayout>
+        <Entry Placeholder="Nombre de la categoría" x:Name="NombreCategoriaEntry" />
+        <Button Text="Agregar categoría" Clicked="AgregarCategoria_Clicked" />
+    </VerticalStackLayout>
+
+</ContentPage>
