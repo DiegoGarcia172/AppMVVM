@@ -95,7 +95,6 @@ namespace AppMVVM.ViewModels
                 Console.WriteLine($"Error al exportar CSV: {ex.Message}");
             }
         }
-
         public Chart GenerarGrafica(string filtroTipo = null, int? filtroCategoriaId = null)
         {
             var transaccionesFiltradas = Transacciones.AsEnumerable();

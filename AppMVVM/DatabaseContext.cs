@@ -2,7 +2,6 @@
 using System;
 using System.IO;
 using AppMVVM.Models;
-
 public class DatabaseContext
 {
     public SQLiteConnection Connection { get; private set; }

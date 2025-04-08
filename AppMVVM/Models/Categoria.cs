@@ -1,5 +1,4 @@
 ﻿using SQLite;
-
 namespace AppMVVM.Models
 {
     public class Categoria

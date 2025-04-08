@@ -6,5 +6,4 @@
         <Entry Placeholder="Nombre de la categoría" x:Name="NombreCategoriaEntry" />
         <Button Text="Agregar categoría" Clicked="AgregarCategoria_Clicked" />
     </VerticalStackLayout>
-
 </ContentPage>

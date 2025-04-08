@@ -6,7 +6,6 @@ namespace AppMVVM
     public partial class CategoriaPage : ContentPage
     {
         private SQLiteConnection _connection;
-
         public CategoriaPage(SQLiteConnection connection)
         {
             InitializeComponent();

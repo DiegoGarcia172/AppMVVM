@@ -1,6 +1,5 @@
 ﻿using SQLite;
 using System;
-
 namespace AppMVVM.Models
 {
     public class Transaccion
