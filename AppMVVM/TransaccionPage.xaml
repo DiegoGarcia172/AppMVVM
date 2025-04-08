@@ -1,17 +1,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppMVVM.TransaccionPage"
-             BindingContext="{Binding TransaccionViewModel}">
+             BindingContext="{Binding TransaccionViewModel}"
+             xmlns:microcharts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui">
 
     <VerticalStackLayout>
         <Picker ItemsSource="{Binding Categorias}" ItemDisplayBinding="{Binding Nombre}" SelectedItem="{Binding CategoriaSeleccionada}" />
-        <Entry Placeholder="Monto" x:Name="Monto" />
-        <Entry Placeholder="Tipo" x:Name="Tipo" />
-        <Entry Placeholder="Fecha" x:Name="Fecha" />
-        <Entry Placeholder="Es Recurrente" x:Name="EsRecurrente" />
-        <Entry Placeholder="Frecuencia" x:Name="Frecuencia" />
-
+        <Entry Placeholder="Monto" x:Name="MontoEntry" />
+        <Entry Placeholder="Tipo" x:Name="TipoEntry" />
+        <Entry Placeholder="Fecha" x:Name="FechaEntry" />
+        <Entry Placeholder="Es Recurrente" x:Name="EsRecurrenteEntry" />
+        <Entry Placeholder="Frecuencia" x:Name="FrecuenciaEntry" />
+        <Picker x:Name="TipoFiltroPicker" ItemsSource="{x:StaticResource TiposTransaccion}" />
+        <Picker x:Name="CategoriaFiltroPicker" ItemsSource="{Binding Categorias}" ItemDisplayBinding="{Binding Nombre}" />
+        <Button Text="Generar Gráfica" Clicked="GenerarGrafica_Clicked" />
+        <microcharts:ChartView x:Name="GraficaView" />
         <Button Text="Agregar Transacción" Clicked="AgregarTransaccion_Clicked" HorizontalOptions="Center" />
+        <Button Text="Exportar Transacciones" Clicked="ExportarTransacciones_Clicked" />
 
         <ListView ItemsSource="{Binding Transacciones}">
             <ListView.ItemTemplate>
@@ -27,5 +32,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </VerticalStackLayout>
-
 </ContentPage>

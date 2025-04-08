@@ -1,5 +1,6 @@
 ﻿using AppMVVM.ViewModels;
 using Microsoft.Extensions.Logging;
+using Microcharts.Maui;
 
 namespace AppMVVM
 {
@@ -10,6 +11,7 @@ namespace AppMVVM
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMicrocharts() 
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -17,11 +19,12 @@ namespace AppMVVM
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
-            builder.Services.AddSingleton<DatabaseContext>(); 
+
             builder.Services.AddSingleton<DatabaseContext>();
             builder.Services.AddSingleton<TransaccionViewModel>();
+
             return builder.Build();
         }
     }

@@ -1,6 +1,9 @@
 using AppMVVM.ViewModels;
 using AppMVVM.Models;
 using SQLite;
+using System;
+using System.IO;
+using Microcharts.Maui;
 
 namespace AppMVVM
 {
@@ -26,12 +29,12 @@ namespace AppMVVM
 
             _viewModel.AgregarTransaccion(new Transaccion
             {
-                Monto = double.Parse(MontoEntry.Text),
-                Tipo = TipoEntry.Text,
+                Monto = double.Parse(MontoEntryControl.Text), 
+                Tipo = TipoEntryControl.Text, 
                 CategoriaId = categoriaId,
-                Fecha = FechaEntry.Text, 
-                EsRecurrente = int.Parse(EsRecurrenteEntry.Text),
-                Frecuencia = FrecuenciaEntry.Text 
+                Fecha = FechaEntryControl.Text, 
+                EsRecurrente = int.Parse(EsRecurrenteEntryControl.Text), 
+                Frecuencia = FrecuenciaEntryControl.Text 
             });
         }
 
@@ -40,10 +43,32 @@ namespace AppMVVM
             await Navigation.PushAsync(new CategoriaPage(_viewModel.DatabaseContext.Connection));
         }
 
-        public Entry MontoEntry { get; set; }
-        public Entry TipoEntry { get; set; }
-        public Entry FechaEntry { get; set; }
-        public Entry EsRecurrenteEntry { get; set; }
-        public Entry FrecuenciaEntry { get; set; }
+        private async void ExportarTransacciones_Clicked(object sender, EventArgs e)
+        {
+            var fileName = $"Transacciones_{DateTime.Now:yyyyMMdd_HHmmss}.csv";
+            var filePath = Path.Combine(FileSystem.CacheDirectory, fileName);
+            _viewModel.ExportarTransaccionesCSV(filePath);
+        }
+
+        private void GenerarGrafica_Clicked(object sender, EventArgs e)
+        {
+            var filtroTipo = TipoFiltroPickerControl.SelectedItem?.ToString();
+            int? filtroCategoriaId = null;
+
+            if (CategoriaFiltroPickerControl.SelectedItem is Categoria categoria)
+            {
+                filtroCategoriaId = categoria.Id;
+            }
+            GraficaViewControl.Chart = _viewModel.GenerarGrafica(filtroTipo, filtroCategoriaId);
+        }
+
+        public Entry MontoEntryControl { get; set; } 
+        public Entry TipoEntryControl { get; set; }
+        public Entry FechaEntryControl { get; set; } 
+        public Entry EsRecurrenteEntryControl { get; set; }
+        public Entry FrecuenciaEntryControl { get; set; } 
+        public Picker TipoFiltroPickerControl { get; set; }
+        public Picker CategoriaFiltroPickerControl { get; set; }
+        public ChartView GraficaViewControl { get; set; }
     }
 }
