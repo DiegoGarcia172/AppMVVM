@@ -6,7 +6,6 @@
     xmlns:local="clr-namespace:AppMVVM"
     Shell.FlyoutBehavior="Flyout"
     Title="AppMVVM">
-
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
